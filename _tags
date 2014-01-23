@@ -1,0 +1,5 @@
+<**/*.{ml,mli}> : bin_annot, annot
+<src> : include
+<test> : include
+
+<test/dicomtrip.{byte,native}> : use_unix, use_bigarray
