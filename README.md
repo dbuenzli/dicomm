@@ -6,10 +6,10 @@ Dicomm is a non-blocking streaming decoder for [DICOM][1] data elements.
 
 Dicomm depends on bigarrays and is distributed under the BSD3 license.
 
-[1][http://medical.nema.org/standard.html]
+[1]: http://medical.nema.org/standard.html
 
 Home page: http://erratique.ch/software/dicomm  
-Contact: Daniel Bünzli `<daniel.buenzl i@erratique.ch>
+Contact: Daniel Bünzli `<daniel.buenzl i@erratique.ch>`
 
 ## Installation
 
