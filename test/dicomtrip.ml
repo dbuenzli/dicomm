@@ -160,7 +160,7 @@ let print_ ?limit inf src =
   in
   pp ppf "@[<v>";
   loop inf (Dicomm.decoder ~syntax:`File src); 
-  pp ppf "@]";
+  pp ppf "@]@.";
   close_src src
     
 let print_unix ?limit inf usize fd =
@@ -177,7 +177,7 @@ let print_unix ?limit inf usize fd =
   in
   pp ppf "@[<v>";
   loop fd (String.create usize) (Dicomm.decoder ~syntax:`File `Manual); 
-  pp ppf "@]"; 
+  pp ppf "@]@."; 
   close_src_unix fd
     
 let print limit sin use_unix usize inf = 
