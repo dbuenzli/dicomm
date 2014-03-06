@@ -126,7 +126,21 @@ type value =
   | `Float64 of (float, Bigarray.float64_elt) bigarray
   | `Tag of [ `One of Tag.t | `Many of Tag.t list ] 
   | `Time of [ `One of time | `Many of time list ] ]
-(** The type for values. *) 
+(** The type for values. VR are mapped to cases as given below.
+    {ul
+    {- [`String] for [`AE], [`AS], [`CS], [`DA], [`DT], [`LO], [`LT], 
+       [`PN], [`SH], [`ST], [`TM], [`UI], [`UT].}
+    {- [`UInt8] for [`OB], [`UN]}
+    {- [`Int16] for [`SS]} 
+    {- [`UInt16] for [`US], [`OW]}
+    {- [`Int32] for [`IS], [`SL].}
+    {- [`UInt32] for [`UL].}
+    {- [`Float32] for [`FL], [`OF]}
+    {- [`Float64] for [`DS], [`FD]}
+    {- [`Tag] for [`AT]}
+    {- [`Time] is TODO}}
+    This should be documented in VR cases but ocamldoc doesn't support
+    documentation in polymporphic variants. *)
 
 val pp_value : ?limit:int -> Format.formatter -> [< value ] -> unit
 (** [pp_value limit ppf v] prints an unspecified textual representation 

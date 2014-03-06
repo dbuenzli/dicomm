@@ -1,4 +1,3 @@
-* Document [value] which VR to which value.
 * Sort out the encoding business and map everything to UTF-8 
 * Decode OB, OW with undefined size. 
 * Parse `TM `DT `DA
