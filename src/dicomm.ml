@@ -69,7 +69,7 @@ module Tag = struct
   module Tset = Set.Make (Int32)
   type t = int32
 
-  let group t = Int32.(to_int (shift_right t 16))
+  let group t = Int32.(to_int (shift_right_logical t 16))
   let element t = Int32.(to_int (logand t 0x0000FFFFl))
   let of_group_element g e = Int32.(logor (shift_left (of_int g) 16) (of_int e))
 
