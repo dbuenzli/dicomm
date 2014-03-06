@@ -111,6 +111,7 @@ module Tag = struct
   let pp ppf t = pp ppf "@[(%04X,%04X)@]" (group t) (element t)
 
   let item = 0xFFFE_E000l
+  let item_delim = 0xFFFE_E00Dl
   let seq_delim = 0xFFFE_E0DDl
 end
 
@@ -622,6 +623,9 @@ let rec d_items p_tag d_element len k d = match len with
         get 4 ~err:(err_eoi_value_length tag) begin fun d -> 
           ret (`Lexeme `I) (d_items p_tag d_element len k) d
         end d
+    | tag when tag = Tag.item_delim ->
+        get 4 ~err:(err_eoi_value_length tag)
+          (d_items p_tag d_element len k) d
     | tag -> 
         d_element tag (d_items p_tag d_element len k) d
     end d
@@ -634,6 +638,9 @@ let rec d_items p_tag d_element len k d = match len with
         get 4 ~err:(err_eoi_value_length tag) begin fun d -> 
           ret (`Lexeme `I) (d_items p_tag d_element l k) d
         end d
+    | tag when tag = Tag.item_delim ->
+        get 4 ~err:(err_eoi_value_length tag)
+          (d_items p_tag d_element l k) d
     | tag -> 
         d_element tag (d_items p_tag d_element l k) d
     end d
