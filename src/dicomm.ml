@@ -285,11 +285,23 @@ type decoder =
   { vr : Tag.t -> vr;                    (* Determine VR for unknown tags. *) 
     mutable i : Bytes.t;                      (* Non-blocking byte stream. *) 
     mutable syntax : syntax;                            (* Decoded syntax. *) 
+    mutable signed_pixels : bool; (* [true] if pixels are signed according
+                                     to tag 0028,0103 *)
     mutable spos : int;                      (* last saved start position. *)
     mutable stack : (Tag.t * int) list;    (* Stack of open tag sequences. *) 
     mutable k : decoder -> decode                 (* decoder continuation. *) }
 
 let save_pos d = d.spos <- Bytes.count d.i
+
+let update_decoder_state d tag v = (* remembers a few things about the data. *) 
+  match tag with 
+  | 0x00280103l (* Pixel representation *) -> 
+      begin match v with 
+      | `UInt16 a when Bigarray.Array1.dim a >= 1 -> 
+          d.signed_pixels <- (a.{0} = 1)
+      | _ -> ()
+      end
+  | _ -> ()
 
 (* Getting and skipping bytes. *)
 
@@ -297,7 +309,9 @@ let never d = assert false
 
 let ret (v : [< decode]) k d = d.k <- k; v  
 let ret_eoi d = (save_pos d; `End)
-let ret_element tag vr v k d = ret (`Lexeme (`E (tag, vr, v))) k d
+let ret_element tag vr v k d = 
+  update_decoder_state d tag v;
+  ret (`Lexeme (`E (tag, vr, v))) k d
 
 let await ~err k d = 
   let rec loop ~err k d = match Bytes.await d.i with
@@ -590,7 +604,11 @@ let d_value p_tag p_int16 p_uint16 p_int32 p_uint32 p_float32 p_float64
   | `DA | `TM | `DT -> d_string tag vr len k d
   | `IS | `DS as vr -> d_number_string tag vr len k d
   | `SS -> d_int16_array p_int16 tag vr len k d
-  | `US | `OW as vr -> d_uint16_array p_uint16 tag vr len k d
+  | `US -> d_uint16_array p_uint16 tag vr len k d
+  | `OW -> 
+      if tag = 0x7FE00010l (* pixel data *) && d.signed_pixels 
+      then d_int16_array p_int16 tag vr len k d
+      else d_uint16_array p_uint16 tag vr len k d 
   | `SL -> d_int32_array p_int32 tag vr len k d 
   | `UL -> d_uint32_array p_uint32 tag vr len k d 
   | `FL | `OF -> d_float32_array p_float32 tag vr len k d
@@ -769,7 +787,9 @@ let decode_fun = function
 
 let decoder ?(vr = fun _ -> `UN) ~syntax src =
   let k = decode_fun syntax in
-  { vr; i = Bytes.create src; syntax; spos = 0; stack = []; k }
+  { vr; i = Bytes.create src; syntax; 
+    signed_pixels = false;
+    spos = 0; stack = []; k }
 
 let decode d = d.k d
 let decoded_range d = d.spos, Bytes.count d.i

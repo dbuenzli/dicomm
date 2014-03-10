@@ -301,6 +301,14 @@ end
        Note that none of this should happen on 64 bits platforms.
        This limitation could be lifted in future versions of the library.}}
 
+
+    {1:pixels Pixel data} 
+
+    On decoding for DICOM bitmap data, the pixel representation 
+    tag [(0028,0103)] is captured and if tag [(7FE0, 0010)] has 
+    a 16 bits representation the value is mapped to `UInt16 or `Int16
+    accordingly.
+
     {1:examples Examples} *)
 
 (*---------------------------------------------------------------------------
