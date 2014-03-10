@@ -108,6 +108,8 @@ module Tag = struct
 
   let vm t = lookup t (fun (_, _, _, vm, _) -> vm)
   let retired t = lookup t (fun (_, _, _, _, r) -> r)
+  let equal = ( = ) 
+  let compare = Pervasives.compare 
   let pp ppf t = pp ppf "@[(%04X,%04X)@]" (group t) (element t)
 
   let item = 0xFFFE_E000l

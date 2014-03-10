@@ -74,6 +74,13 @@ module Tag : sig
   (** [retired t] is [true] if the data element with tag [t] is retired
       by the standard. *) 
 
+  val equal : t -> t -> bool 
+  (** [equal t t'] is [true] if [t] and [t'] are equal. *)
+
+  val compare : t -> t -> int 
+  (** [compare t t'] orders [t] and [t'] first by group and then 
+      by element both in integer order. *) 
+
   val pp : Format.formatter -> t -> unit
   (** [pp ppf t] prints an unspecified representation of [t] on [ppf]. *) 
 end
