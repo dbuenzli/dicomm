@@ -115,6 +115,8 @@ module Tag = struct
   let item = 0xFFFE_E000l
   let item_delim = 0xFFFE_E00Dl
   let seq_delim = 0xFFFE_E0DDl
+    
+  include Dicomm_data.Tag_constants
 end
 
 module Uid = struct
