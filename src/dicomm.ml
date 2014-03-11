@@ -119,6 +119,8 @@ module Tag = struct
   include Dicomm_data.Tag_constants
 end
 
+type tag = Tag.t
+
 module Uid = struct
   type t = string
   
