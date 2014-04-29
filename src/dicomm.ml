@@ -453,15 +453,20 @@ let p_uint32_be = p_int32_be
 let p_float32_le d i = Int32.float_of_bits (p_int32_le d i)
 let p_float32_be d i = Int32.float_of_bits (p_int32_be d i)
 
+let make_float64 hi lo =
+  let hi = Int64.(shift_left (of_int32 hi) 32) in
+  let lo = Int64.(logand (of_int32 lo) 0xFFFF_FFFFL) in (* careful, sign *)
+  Int64.(float_of_bits (logor hi lo))
+
 let p_float64_le d i = 
   let lo = p_int32_le d i in 
   let hi = p_int32_le d (i + 1) in 
-  Int64.(float_of_bits (logor (shift_left (of_int32 hi) 32) (of_int32 lo)))
+  make_float64 hi lo
 
 let p_float64_be d i = 
-  let hi = p_int32_be d i in 
+  let hi = p_int32_be d i in
   let lo = p_int32_be d (i + 1) in 
-  Int64.(float_of_bits (logor (shift_left (of_int32 hi) 32) (of_int32 lo)))
+  make_float64 hi lo
 
 (* Decoders *) 
 
