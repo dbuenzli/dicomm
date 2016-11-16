@@ -6,11 +6,11 @@ doc: "http://erratique.ch/software/dicomm/doc/Dicomm"
 dev-repo: "http://erratique.ch/repos/dicomm.git"
 bug-reports: "https://github.com/dbuenzli/dicomm/issues"
 tags: [ "decoder" "dicom" "image" "graphics" "org:erratique" ]
-license: "BSD3"
+license: "ISC"
 depends: [ "ocamlfind" ]
 available: [ocaml-version >= "4.00.0"]
-build: 
+build:
 [
-  ["./pkg/pkg-git" ] 
+  ["./pkg/pkg-git" ]
   ["./pkg/build" "true" ]
 ]
