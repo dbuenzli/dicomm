@@ -4,30 +4,30 @@
    %%NAME%% release %%VERSION%%
   ---------------------------------------------------------------------------*)
 
-(** DICOM data 
+(** DICOM data
 
     {b Warning.} This is a private module do not use directly. *)
 
-type vr = 
-  [ `AE | `AS | `AT | `CS | `DA | `DS | `DT | `FD | `FL | `IS | `LO | `LT 
-  | `OB | `OF | `OW | `PN | `SH | `SL | `SQ | `SS | `ST | `TM | `UI | `UL 
+type vr =
+  [ `AE | `AS | `AT | `CS | `DA | `DS | `DT | `FD | `FL | `IS | `LO | `LT
+  | `OB | `OF | `OW | `PN | `SH | `SL | `SQ | `SS | `ST | `TM | `UI | `UL
   | `UN | `US | `UT | `OB_or_OW | `US_or_SS | `US_or_OW | `US_or_SS_or_OW ]
 
-type vm = 
-  [ `One | `One_2 | `One_3 | `One_8 | `One_32 | `One_99 | `One_n 
-  | `Two | `Two_n | `Two_2n | `Three | `Three_n | `Three_3n | `Four 
+type vm =
+  [ `One | `One_2 | `One_3 | `One_8 | `One_32 | `One_99 | `One_n
+  | `Two | `Two_n | `Two_2n | `Three | `Three_n | `Three_3n | `Four
   | `Six | `Six_n | `Nine | `Sixteen ]
 
 val elements : (int32 * (string * string * vr * vm * bool)) list
-(** [elements] pair data element tags with their specification 
-    [(name, keyword, vr, vm, retired)] as found in PS 3.6 2011 §6,7,8 and 
+(** [elements] pair data element tags with their specification
+    [(name, keyword, vr, vm, retired)] as found in PS 3.6 2011 §6,7,8 and
     PS 3.7 2011 Annex E. *)
 
-val element_ranges : (int32 * int32) list 
-(** [element_ranges] pairs a tag [t] with a mask [m]. Given a tag [t'] if 
+val element_ranges : (int32 * int32) list
+(** [element_ranges] pairs a tag [t] with a mask [m]. Given a tag [t'] if
     [t' land m = t] then lookup for [t] in {!elements} for its definition. *)
-    
-val uid_names : (string * string) list 
+
+val uid_names : (string * string) list
 (** [uid_names] pairs UIDs and their names as found in PS 3.6 2011
     Annex A). *)
 
@@ -7326,7 +7326,7 @@ end
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
-     
+
    1. Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
 

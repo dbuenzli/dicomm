@@ -1,8 +1,7 @@
 version = "%%VERSION%%"
 description = "Non-blocking streaming DICOM data element decoder for OCaml"
+requires = "bytes"
 archive(byte) = "dicomm.cma"
-archive(byte, plugin) = "dicomm.cma"
 archive(native) = "dicomm.cmxa"
-archive(native, plugin) = "dicomm.cmxs"
-exists_if = "dicomm.cma"
-
+plugin(byte) = "dicomm.cma"
+plugin(native) = "dicomm.cmxs"

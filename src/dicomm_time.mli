@@ -5,35 +5,35 @@
   ---------------------------------------------------------------------------*)
 
 (** Time stamps.
-   
+
    {b Warning.} This is a private module do not use directly. *)
 
-type t = [ `Daytime of float | `Stamp of float * float option ] 
-(** The type for representing times. *) 
-         
+type t = [ `Daytime of float | `Stamp of float * float option ]
+(** The type for representing times. *)
+
 val stamp_of_da : string -> int -> int -> [`Ok of t | `Error ]
-(** [stamp_of_date s start len] is a unix time [`Stamp] parsed from 
-    the substring of length [len] starting at [start] in [s]. 
-    
-    Parses ["YYYYMMDD"] or ["YYYYxMMyDD"] where [x,y] are arbitrary 
+(** [stamp_of_date s start len] is a unix time [`Stamp] parsed from
+    the substring of length [len] starting at [start] in [s].
+
+    Parses ["YYYYMMDD"] or ["YYYYxMMyDD"] where [x,y] are arbitrary
     separators. *)
 
-val stamp_of_dt : string -> int -> int -> [ `Ok of t | `Error ] 
-(** [stamp_of_dt s start len] is a unix time [`Stamp] parsed from 
-    the substring of length [len] starting at [start] in [s]. 
-    
-    Parses ["YYYYMMDD"] or ["YYYYxMMyDD"] where [x,y] are arbitrary 
+val stamp_of_dt : string -> int -> int -> [ `Ok of t | `Error ]
+(** [stamp_of_dt s start len] is a unix time [`Stamp] parsed from
+    the substring of length [len] starting at [start] in [s].
+
+    Parses ["YYYYMMDD"] or ["YYYYxMMyDD"] where [x,y] are arbitrary
     separators. *)
 
 val daytime_of_tm : int -> int -> int -> [`Ok of t | `Error ]
 (** [daytime_of_tm s start len] is a `Daytime parsed from the
-    substring of length [len] starting at [start] in [s].  
-    
-    Parses prefixes of ["HHMMSS.FFFFFF"] or ["HHxMMySS.FFFFFF"] where 
+    substring of length [len] starting at [start] in [s].
+
+    Parses prefixes of ["HHMMSS.FFFFFF"] or ["HHxMMySS.FFFFFF"] where
     [x,y] are arbitrary separators. *)
 
-val pp : Format.formatter -> t -> unit 
-(** [pp ppf t] prints an unspecified representation of [t] on [ppf]. *) 
+val pp : Format.formatter -> t -> unit
+(** [pp ppf t] prints an unspecified representation of [t] on [ppf]. *)
 
 (*---------------------------------------------------------------------------
    Copyright (c) 2014 Daniel C. Bünzli.
@@ -42,7 +42,7 @@ val pp : Format.formatter -> t -> unit
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
-     
+
    1. Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
 

@@ -4,18 +4,18 @@
    %%NAME%% release %%VERSION%%
   ---------------------------------------------------------------------------*)
 
-type vr = 
-  [ `AE | `AS | `AT | `CS | `DA | `DS | `DT | `FD | `FL | `IS | `LO | `LT 
-  | `OB | `OF | `OW | `PN | `SH | `SL | `SQ | `SS | `ST | `TM | `UI | `UL 
+type vr =
+  [ `AE | `AS | `AT | `CS | `DA | `DS | `DT | `FD | `FL | `IS | `LO | `LT
+  | `OB | `OF | `OW | `PN | `SH | `SL | `SQ | `SS | `ST | `TM | `UI | `UL
   | `UN | `US | `UT | `OB_or_OW | `US_or_SS | `US_or_OW | `US_or_SS_or_OW ]
 
-type vm = 
-  [ `One | `One_2 | `One_3 | `One_8 | `One_32 | `One_99 | `One_n 
-  | `Two | `Two_n | `Two_2n | `Three | `Three_n | `Three_3n 
+type vm =
+  [ `One | `One_2 | `One_3 | `One_8 | `One_32 | `One_99 | `One_n
+  | `Two | `Two_n | `Two_2n | `Three | `Three_n | `Three_3n
   | `Four | `Six | `Six_n | `Nine | `Sixteen ]
 
-(* Element sepecifications as found in PS 3.6 2011 §6,7,8 and 
-   PS 3.7 2011 Annex E *) 
+(* Element sepecifications as found in PS 3.6 2011 §6,7,8 and
+   PS 3.7 2011 Annex E *)
 
 let elements = [
 (* 3.7 Annex E, table E.1-1 *)
@@ -68,7 +68,7 @@ let elements = [
 0x0000_51A0l, ("Print", "Print", `CS, `One, true);
 0x0000_51B0l, ("Overlays", "Overlays", `US, `One_n, true);
 
-(* 3.6 §7 File meta elements *) 
+(* 3.6 §7 File meta elements *)
 0x0002_0000l, ("File Meta Information Group Length", "FileMetaInformationGroupLength", `UL, `One, false);
 0x0002_0001l, ("File Meta Information Version", "FileMetaInformationVersion", `OB, `One, false);
 0x0002_0002l, ("Media Storage SOP Class UID", "MediaStorageSOPClassUID", `UI, `One, false);
@@ -80,7 +80,7 @@ let elements = [
 0x0002_0100l, ("Private Information Creator UID", "PrivateInformationCreatorUID", `UI, `One, false);
 0x0002_0102l, ("Private Information", "PrivateInformation", `OB, `One, false);
 
-(* §8 Directory structuring elements *) 
+(* §8 Directory structuring elements *)
 0x0004_1130l, ("File-set ID", "FileSetID", `CS, `One, false);
 0x0004_1141l, ("File-set Descriptor File ID", "FileSetDescriptorFileID", `CS, `One_8, false);
 0x0004_1142l, ("Specific Character Set of File-set Descriptor File", "SpecificCharacterSetOfFileSetDescriptorFile", `CS, `One, false);
@@ -101,7 +101,7 @@ let elements = [
 0x0004_151Al, ("Referenced Related General SOP Class UID in File", "ReferencedRelatedGeneralSOPClassUIDInFile", `UI, `One_n, false);
 0x0004_1600l, ("Number of References", "NumberOfReferences", `UL, `One, true);
 
-(* §6 Data elements *) 
+(* §6 Data elements *)
 0x0008_0001l, ("Length to End", "LengthToEnd", `UL, `One, true);
 0x0008_0005l, ("Specific Character Set", "SpecificCharacterSet", `CS, `One_n, false);
 0x0008_0006l, ("Language Code Sequence", "LanguageCodeSequence", `SQ, `One, false);
@@ -3674,7 +3674,7 @@ let elements = [
 ]
 
 let element_ranges = [ (* Data element equivalence classes *)
-0x0020_3100l, 0xFFFF_FF00l; 
+0x0020_3100l, 0xFFFF_FF00l;
 0x0028_0400l, 0xFFFF_FF0Fl;
 0x0028_0401l, 0xFFFF_FF0Fl;
 0x0028_0402l, 0xFFFF_FF0Fl;
@@ -3764,8 +3764,8 @@ let element_ranges = [ (* Data element equivalence classes *)
 0x7F00_0040l, 0xFF00_FFFFl; ]
 
 
-(* UIDs and their names as found in PS 3.6 2011 Annex A *) 
-let uid_names = [                        
+(* UIDs and their names as found in PS 3.6 2011 Annex A *)
+let uid_names = [
 (* Table A-1 *)
 "1.2.840.10008.1.1", "Verification SOP Class";
 "1.2.840.10008.1.2", "Implicit VR Little Endian: Default Transfer Syntax for DICOM";
@@ -4103,7 +4103,7 @@ let uid_names = [
 "1.2.840.10008.15.0.4.6", "dicomNetworkConnection";
 "1.2.840.10008.15.0.4.7", "dicomUniqueAETitle";
 "1.2.840.10008.15.0.4.8", "dicomTransferCapability";
-"1.2.840.10008.15.1.1", "Universal Coordinated Time"; 
+"1.2.840.10008.15.1.1", "Universal Coordinated Time";
 
 (* Table A-3 *)
 "1.2.840.10008.1.4.1.1", "Talairach Brain Atlas Frame of Reference";
@@ -8621,7 +8621,7 @@ end
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
-     
+
    1. Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
 
@@ -8646,6 +8646,3 @@ end
    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   ---------------------------------------------------------------------------*)
-
-
-

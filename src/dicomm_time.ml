@@ -4,27 +4,27 @@
    %%NAME%% release %%VERSION%%
   ---------------------------------------------------------------------------*)
 
-type t = [ `Daytime of float | `Stamp of float * float option ] 
+type t = [ `Daytime of float | `Stamp of float * float option ]
 
 let stamp_of_da s i len = failwith "TODO"
 (*
-  try 
-    let s = Bytes.bytes d.i in 
+  try
+    let s = Bytes.bytes d.i in
     let i = Bytes.start d.i in
     let sub s len = int_of_string (String.sub s (i + s) len) in
-    let yyyy, mm, dd = 
-      if len = 10 then (sub 0 4), (sub 5 2), (sub 8 2) else 
-      if len = 8 then (sub 0 4), (sub 4 2), (sub 6 2) else 
-      failwith "" 
+    let yyyy, mm, dd =
+      if len = 10 then (sub 0 4), (sub 5 2), (sub 8 2) else
+      if len = 8 then (sub 0 4), (sub 4 2), (sub 6 2) else
+      failwith ""
     in
-    if 
-  with Failure _ -> None 
+    if
+  with Failure _ -> None
 *)
 
 
 let stamp_of_dt s j len = failwith "TODO"
   (* N.B. context sensitive if no TZ, see doc about VR in the standard. *)
-    
+
 let daytime_of_tm s j len = failwith "TODO"
 let pp ppf t = failwith "TODO"
 
@@ -35,7 +35,7 @@ let pp ppf t = failwith "TODO"
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
-     
+
    1. Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
 
