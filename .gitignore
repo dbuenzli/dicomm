@@ -3,3 +3,6 @@ tmp
 *~
 \.\#*
 \#*#
+*.install
+*.byte
+*.native

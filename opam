@@ -7,10 +7,13 @@ dev-repo: "http://erratique.ch/repos/dicomm.git"
 bug-reports: "https://github.com/dbuenzli/dicomm/issues"
 tags: [ "decoder" "dicom" "image" "graphics" "org:erratique" ]
 license: "ISC"
-depends: [ "ocamlfind" ]
-available: [ocaml-version >= "4.00.0"]
-build:
-[
-  ["./pkg/pkg-git" ]
-  ["./pkg/build" "true" ]
+depends: [
+  "ocamlfind" {build}
+  "ocamlbuild" {build}
+  "topkg" {build}
 ]
+available: [ocaml-version >= "4.01.0"]
+build: [[
+  "ocaml" "pkg/pkg.ml" "build"
+          "--pinned" "%{pinned}%"
+]]
